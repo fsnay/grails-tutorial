@@ -1,4 +1,4 @@
-package grails.tutorial
+package com.fsnay.gt
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration

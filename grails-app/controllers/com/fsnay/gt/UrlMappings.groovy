@@ -1,4 +1,4 @@
-package grails.tutorial
+package com.fsnay.gt
 
 class UrlMappings {
 
