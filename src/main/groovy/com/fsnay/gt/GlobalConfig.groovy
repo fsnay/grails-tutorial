@@ -7,6 +7,6 @@ class GlobalConfig {
     ]
 
     public static Integer itensPerPage(){
-        return 10
+        return 1
     }
 }

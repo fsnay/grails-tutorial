@@ -3,10 +3,9 @@ package com.fsnay
 import com.fsnay.gt.AppUtils
 import com.fsnay.gt.GlobalConfig
 import com.fsnay.gt.Member
-import grails.gorm.transactions.Transactional
 import grails.web.servlet.mvc.GrailsParameterMap
 
-@Transactional
+
 class MemberService {
 
     def getById(Serializable id) {
@@ -54,14 +53,15 @@ class MemberService {
 
     def list(GrailsParameterMap params){
         params.max = params.max ?: GlobalConfig.itensPerPage()
-        List<Member> members = Member.createCriteria().list(params){
+        List<Member> memberList = Member.createCriteria().list(params){
             if(params?.colName && params?.colValue){
                 like(params.colName,"%" + params.colValue + "%")
             }
-            if(!params.sortt){
+            if(!params.sort){
                 order("id","desc")
             }
         }
-        return[list:members,count: members.size()]
+
+        return[list:memberList,count: Member.count()]
     }
 }

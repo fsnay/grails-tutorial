@@ -11,18 +11,20 @@ class Member {
     String memberType = GlobalConfig.USER_TYPE.REGULAR_MEMBER
 
     Long identityHashLastUpdate
-    Boolean isActive
+    Boolean isActive = true
 
     static constraints = {
         email(email: true,unique: true,nullable: false,blank: false)
         firstName(nullable: false,blank: false)
         lastName(nullable: false,blank: false)
         password(nullable: false,blank: false)
+        identityHash(nullable: true)
+        identityHashLastUpdate(nullable: true)
     }
-    static mapping = {
-        table("user")
-        version(false)
-    }
+ //   static mapping = {
+  //      table("user")
+   //     version(false)
+   // }
     def beforeInsert(){
         this.password = this.password.encodeAsSHA256()
     }

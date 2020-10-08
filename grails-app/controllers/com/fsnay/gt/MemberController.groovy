@@ -8,7 +8,7 @@ class MemberController {
 
     def index() {
         def response = memberService.list(params)
-        [member:response.list,total:response.count]
+        [memberList:response.list,total:response.count]
     }
 
     def details(Integer id){
@@ -41,7 +41,9 @@ class MemberController {
     }
 
     def save(){
+
         def response = memberService.save(params)
+
         if(!response.isSuccess){
             flash.redirectParams = response.model
             redirect(controller: "member",action: "create")
@@ -58,7 +60,7 @@ class MemberController {
         }
         else{
             response = memberService.update(response,params)
-            if(!response.isSuccess()){
+            if(!response.isSuccess){
                 flash.redirectParams = response.model
                 redirect(controller: "member",action:"edit")
             }
